@@ -222,6 +222,10 @@
   z-index:auto !important;
 }
 
+.ace_scrollbar {
+  position:static !important;
+}
+
 /** Force opacity:0 to textarea in writing texts **/
 .ace_text-input.ace_composition {
  opacity: 0 !important;
