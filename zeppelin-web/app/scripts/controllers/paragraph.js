@@ -251,6 +251,32 @@ angular.module('zeppelinWebApp')
     $rootScope.$emit('sendNewEvent', data);
   };
 
+  $scope.downloadParagraph = function(){
+    var filename = 'data_'+(new Date()).getTime()+'.csv';
+    var data = $scope.paragraph.result.msg.replace(/\t/g,",");
+    var charset = "UTF-8";
+
+    // IE 10+
+    if ( $window.navigator.msSaveOrOpenBlob ) {
+      var blob = new Blob(["\ufeff", data], {
+          type: "text/csv;charset=" + charset + ";"
+      });
+      $window.navigator.msSaveBlob(blob, filename);
+    } else {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/text;' + charset + ',\ufeff' + encodeURI(data));
+      element.setAttribute('download', filename);
+      element.click();
+    }
+
+/*
+    var element = document.createElement('a');
+
+    // Browsers that support HTML5 download attribute
+    if ( element.download !== undefined ) { }
+*/
+
+  }
 
   $scope.runParagraph = function(data) {
     var parapgraphData = {op: 'RUN_PARAGRAPH',
