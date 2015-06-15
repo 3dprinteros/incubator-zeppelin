@@ -66,6 +66,8 @@ public class DBConnectionFactory {
     // add other jdbc
     if ( jdbc.equals("mysql") ) {
       currentConnection = new MysqlConnection(host, port, user, password);
+    } else if ( jdbc.equals("postgres") ) {
+      currentConnection = new PostgresConnection(host, port, user, password);
     } else {
       currentConnection = null;
     }
