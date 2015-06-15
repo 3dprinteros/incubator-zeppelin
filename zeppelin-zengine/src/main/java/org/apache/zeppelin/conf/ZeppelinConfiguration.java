@@ -390,7 +390,7 @@ public class ZeppelinConfiguration extends XMLConfiguration {
         + "org.apache.zeppelin.shell.ShellInterpreter,"
         + "org.apache.zeppelin.hive.HiveInterpreter,"
         + "org.apache.zeppelin.tajo.TajoInterpreter,"
-        + "org.apache.zeppelin.flink.FlinkInterpreter",
+        + "org.apache.zeppelin.flink.FlinkInterpreter,"
         + "org.apache.zeppelin.jdbc.JDBCInterpreter"),
         ZEPPELIN_INTERPRETER_DIR("zeppelin.interpreter.dir", "interpreter"),
         ZEPPELIN_ENCODING("zeppelin.encoding", "UTF-8"),
