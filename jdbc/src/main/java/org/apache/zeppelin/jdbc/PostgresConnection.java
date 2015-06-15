@@ -48,7 +48,7 @@ public class PostgresConnection implements DBConnection {
   String user;
   String passwd;
 
-  public PostrgesConnection(String host, String port, String user, String passwd) {
+  public PostgresConnection(String host, String port, String user, String passwd) {
     this.host = host;
     this.port = port;
     this.user = user;
