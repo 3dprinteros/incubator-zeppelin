@@ -110,7 +110,7 @@ public class PostgresqlInterpreter extends Interpreter {
 
     try {
       // connect to postgresql
-      Class.forName(driver);
+      //Class.forName(driver);
       conn = DriverManager.getConnection(url, user, password);
       stmt = conn.createStatement();
       rs = stmt.executeQuery(cmd);
