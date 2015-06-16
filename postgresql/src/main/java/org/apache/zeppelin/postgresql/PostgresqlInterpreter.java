@@ -95,7 +95,7 @@ public class PostgresqlInterpreter extends Interpreter {
       }
     }
 
-    String driver = "com.postrgesql.jdbc.Driver";
+    String driver = "com.postgresql.jdbc.Driver";
     String url = "jdbc:postgresql://";
     url += host;
     url += port != "" ? ":" + port : "";
