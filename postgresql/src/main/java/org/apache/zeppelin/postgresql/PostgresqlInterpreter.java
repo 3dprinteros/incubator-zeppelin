@@ -35,7 +35,7 @@ public class PostgresqlInterpreter extends Interpreter {
   int commandTimeOut = 600000;
 
   static {
-    Interpreter.register("postgresql", MysqlInterpreter.class.getName());
+    Interpreter.register("postgresql", PostgresqlInterpreter.class.getName());
   }
 
   public PostgresqlInterpreter(Properties property) {
