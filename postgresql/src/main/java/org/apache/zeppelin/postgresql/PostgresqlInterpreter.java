@@ -151,7 +151,7 @@ public class PostgresqlInterpreter extends Interpreter {
       conn.close();
 
       return new InterpreterResult(InterpreterResult.Code.SUCCESS, msg);
-    } catch ( ClassNotFoundException | SQLException e ) {
+    } catch ( SQLException e ) {
       logger.error("Can not run " + cmd, e);
       return new InterpreterResult(Code.ERROR, e.getMessage());
     }
