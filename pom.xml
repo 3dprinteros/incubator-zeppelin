@@ -92,7 +92,6 @@
     <module>shell</module>
     <module>hive</module>
     <module>tajo</module>
-    <module>jdbc</module>
     <module>postgresql</module>
     <module>flink</module>
     <module>ignite</module>
