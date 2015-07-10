@@ -61,22 +61,16 @@ public class NotebookServer extends WebSocketServer implements
   private static final String DEFAULT_ADDR = "0.0.0.0";
   private static final int DEFAULT_PORT = 8282;
 
-  private static void creatingwebSocketServerLog(String address, int port) {
-    LOG.info("Create zeppelin websocket on {}:{}", address, port);
-  }
-
   Gson gson = new Gson();
   Map<String, List<WebSocket>> noteSocketMap = new HashMap<String, List<WebSocket>>();
   List<WebSocket> connectedSockets = new LinkedList<WebSocket>();
 
   public NotebookServer() {
     super(new InetSocketAddress(DEFAULT_ADDR, DEFAULT_PORT));
-    creatingwebSocketServerLog(DEFAULT_ADDR, DEFAULT_PORT);
   }
 
   public NotebookServer(String address, int port) {
     super(new InetSocketAddress(address, port));
-    creatingwebSocketServerLog(address, port);
   }
 
   private Notebook notebook() {
@@ -136,6 +130,9 @@ public class NotebookServer extends WebSocketServer implements
           case COMPLETION:
             completion(conn, notebook, messagereceived);
             break;
+          case PING:
+            pong();
+            break;          
           case ANGULAR_OBJECT_UPDATED:
             angularObjectUpdated(conn, notebook, messagereceived);
             break;
@@ -565,7 +562,9 @@ public class NotebookServer extends WebSocketServer implements
     @Override
     public void afterStatusChange(Job job, Status before, Status after) {
       if (after == Status.ERROR) {
-        job.getException().printStackTrace();
+        if (job.getException() != null) {
+          LOG.error("Error", job.getException());
+        }
       }
       if (job.isTerminated()) {
         LOG.info("Job {} is finished", job.getId());
@@ -582,6 +581,9 @@ public class NotebookServer extends WebSocketServer implements
   @Override
   public JobListener getParagraphJobListener(Note note) {
     return new ParagraphJobListener(this, note);
+  }
+
+  private void pong() {
   }
 
   private void sendAllAngularObjects(Note note, WebSocket conn) {
